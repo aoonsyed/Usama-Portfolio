@@ -278,8 +278,6 @@ const ProjectCard = ({ project, isFeatured = false }: { project: Project; isFeat
       viewport={{ once: true }}
       className="mb-20"
     >
-      {/* Featured layout remains unchanged */}
-      {/* ... (rest of your featured layout code here) */}
     </motion.div>
   ) : (
     <motion.div
@@ -288,98 +286,99 @@ const ProjectCard = ({ project, isFeatured = false }: { project: Project; isFeat
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
     >
-      <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-colors h-full flex flex-col">
-        <div className="relative h-[220px]">
-          <Image
-            src={project.image || "/placeholder.svg"}
-            alt={project.title}
-            fill
-            className="object-cover rounded-t-lg"
-            unoptimized
-          />
-        </div>
-        <CardContent className="p-6 flex-grow">
-          <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-          <p className="text-slate-300 mb-4">{project.description}</p>
+    <Card className="bg-card text-foreground border border-border hover:border-ring transition-colors h-full flex flex-col">
+  <div className="relative h-[220px]">
+    <Image
+      src={project.image || "/placeholder.svg"}
+      alt={project.title}
+      fill
+      className="object-cover rounded-t-lg"
+      unoptimized
+    />
+  </div>
+  <CardContent className="p-6 flex-grow">
+    <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+    <p className="text-muted-foreground mb-4">{project.description}</p>
 
-          <div className={`transition-all duration-300 overflow-hidden ${expanded ? "max-h-[2000px]" : "max-h-0"}`}>
-            <div className="mb-4">
-              <p className="text-slate-300 text-sm whitespace-pre-line">{project.longDescription}</p>
-            </div>
-            <div className="mb-4">
-              <h4 className="text-md font-semibold mb-2 text-blue-300">Challenges:</h4>
-              <ul className="list-disc pl-5 text-slate-300 text-sm">
-                {project.challenges.slice(0, 2).map((challenge: string, i: number) => (
-                  <li key={i}>{challenge}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="mb-4">
-              <h4 className="text-md font-semibold mb-2 text-blue-300">Solutions:</h4>
-              <ul className="list-disc pl-5 text-slate-300 text-sm">
-                {project.solutions.slice(0, 2).map((solution: string, i: number) => (
-                  <li key={i}>{solution}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+    <div className={`transition-all duration-300 overflow-hidden ${expanded ? "max-h-[2000px]" : "max-h-0"}`}>
+      <div className="mb-4">
+        <p className="text-muted-foreground text-sm whitespace-pre-line">{project.longDescription}</p>
+      </div>
+      <div className="mb-4">
+        <h4 className="text-md font-semibold mb-2 text-primary">Challenges:</h4>
+        <ul className="list-disc pl-5 text-muted-foreground text-sm">
+          {project.challenges.slice(0, 2).map((challenge: string, i: number) => (
+            <li key={i}>{challenge}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="mb-4">
+        <h4 className="text-md font-semibold mb-2 text-primary">Solutions:</h4>
+        <ul className="list-disc pl-5 text-muted-foreground text-sm">
+          {project.solutions.slice(0, 2).map((solution: string, i: number) => (
+            <li key={i}>{solution}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
 
-          <Button
-            variant="ghost"
-            onClick={() => setExpanded(!expanded)}
-            className="mb-4 text-blue-400 hover:text-blue-300 hover:bg-blue-900/20 p-0 h-auto text-sm"
-          >
-            {expanded ? (
-              <span className="flex items-center">
-                Show Less <ChevronUp size={14} className="ml-1" />
-              </span>
-            ) : (
-              <span className="flex items-center">
-                Show More <ChevronDown size={14} className="ml-1" />
-              </span>
-            )}
-          </Button>
+    <Button
+      variant="ghost"
+      onClick={() => setExpanded(!expanded)}
+      className="mb-4 text-primary hover:text-primary/80 hover:bg-primary/10 p-0 h-auto text-sm"
+    >
+      {expanded ? (
+        <span className="flex items-center">
+          Show Less <ChevronUp size={14} className="ml-1" />
+        </span>
+      ) : (
+        <span className="flex items-center">
+          Show More <ChevronDown size={14} className="ml-1" />
+        </span>
+      )}
+    </Button>
 
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, 3).map((tech: string, i: number) => (
-              <Badge key={i} variant="outline" className="bg-blue-500/10 text-blue-400 border-blue-500/30">
-                {tech}
-              </Badge>
-            ))}
-            {project.technologies.length > 3 && (
-              <Badge variant="outline" className="bg-slate-700 text-slate-300 border-slate-600">
-                +{project.technologies.length - 3}
-              </Badge>
-            )}
-          </div>
-        </CardContent>
-        <CardFooter className="p-6 pt-0 flex gap-4">
-          <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
-            <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink size={14} className="mr-2" />
-              View Project
-            </Link>
-          </Button>
-          <Button
-            asChild
-            size="sm"
-            variant="outline"
-            className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
-          >
-            <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-              <Github size={14} className="mr-2" />
-              Code
-            </Link>
-          </Button>
-        </CardFooter>
-      </Card>
+    <div className="flex flex-wrap gap-2">
+      {project.technologies.slice(0, 3).map((tech: string, i: number) => (
+        <Badge key={i} variant="outline" className="bg-primary/10 text-primary border-primary/30">
+          {tech}
+        </Badge>
+      ))}
+      {project.technologies.length > 3 && (
+        <Badge variant="outline" className="bg-muted text-foreground border-border">
+          +{project.technologies.length - 3}
+        </Badge>
+      )}
+    </div>
+  </CardContent>
+  <CardFooter className="p-6 pt-0 flex gap-4">
+    <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
+      <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+        <ExternalLink size={14} className="mr-2" />
+        View Project
+      </Link>
+    </Button>
+    <Button
+      asChild
+      size="sm"
+      variant="outline"
+      className="border-primary text-primary hover:bg-primary hover:text-white"
+    >
+      <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+        <Github size={14} className="mr-2" />
+        Code
+      </Link>
+    </Button>
+  </CardFooter>
+</Card>
+
     </motion.div>
   )
 }
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 bg-slate-950">
+    <section id="projects" className="py-20 bg-background text-foreground">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -388,6 +387,11 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
+          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            A selection of featured and notable projects I’ve worked on.
+          </p>
         </motion.div>
 
         {/* Featured Projects */}
@@ -410,5 +414,6 @@ const Projects = () => {
     </section>
   )
 }
+
 
 export default Projects
