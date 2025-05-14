@@ -10,6 +10,7 @@ export default function Skills() {
         { name: "Python", level: 95 },
         { name: "JavaScript", level: 85 },
         { name: "Elixir", level: 70 },
+        { name: "Rust", level: 75 },
       ],
     },
     {
@@ -17,6 +18,7 @@ export default function Skills() {
       skills: [
         { name: "Django", level: 95 },
         { name: "Flask", level: 90 },
+        { name: "Rest Framework", level: 75 },
         { name: "FastAPI", level: 85 },
         { name: "React", level: 80 },
         { name: "Node.js", level: 75 },

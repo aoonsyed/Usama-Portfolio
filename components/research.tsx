@@ -6,7 +6,6 @@ export default function Research() {
   return (
     <section id="research" className="py-20 bg-muted/10 scroll-mt-16">
       <div className="container px-4 md:px-6">
-        {/* SECTION HEADER like "Featured Projects" */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Project</h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
