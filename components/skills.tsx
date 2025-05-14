@@ -11,6 +11,7 @@ export default function Skills() {
         { name: "JavaScript", level: 85 },
         { name: "Elixir", level: 70 },
         { name: "Rust", level: 75 },
+         { name: "Slint", level: 75 },
       ],
     },
     {
